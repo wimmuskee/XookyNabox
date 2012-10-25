@@ -1,3 +1,0 @@
-[submodule "vendor/libpd"]
-	path = vendor/libpd
-	url = git@github.com:rvega/libpd.git
