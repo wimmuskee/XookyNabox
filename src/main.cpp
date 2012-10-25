@@ -123,13 +123,9 @@ void parseParameters(int argc, char *argv[]){
 // = INITIALIZE LIB PD =
 // =====================
 void initLibPd(){
-	 // The Jack server only seems to run fine at 256 samples per frame and libpd only processess samples
-	 // in chunks (ticks) of n*64 samples at a time. We need to set the ticksPerBuffer to 4.
-
-
 	 // init the pd engine
 	 libpd_init();
-	 libpd_init_audio(2, 2, sampleRate, 4); //nInputs, nOutputs, sampleRate, ticksPerBuffer
+	 libpd_init_audio(2, 2, sampleRate); //nInputs, nOutputs, sampleRate
 	 
 	 // send compute audio 1 message to pd
 	 libpd_start_message(1);
@@ -196,7 +192,9 @@ int process(jack_nframes_t nframes, void *arg){
 	 }
  
 	 // DSP Magic ;)
-	 libpd_process_float(input, output);
+	 // The Jack server only seems to run fine at 256 samples per frame and libpd only processess samples
+	 // in chunks (ticks) of n*64 samples at a time. We need to set the ticksPerBuffer to 4.
+	 libpd_process_float(4, input, output);
 	 
 	 for(unsigned int i=0; i<nframes; i++){
 			*out1 = output[i*2];
