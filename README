@@ -7,15 +7,14 @@ Xooky Nabox is a Jack client for running Pure Data patches on embedded devices.
 Requirements
 ------------
 - jack
+- libpd
 
 ---------
 Compiling
 ---------
-$ cd /path/to/xooky_nabox/vendor/libpd/src
-$ make  #This step may throu some errors about failing to create jni packages, just ignore.
-$ sudo make install
 $ cd /path/to/xooky_nabox/src
 $ make
+$ sudo make install
 
 -----
 Using

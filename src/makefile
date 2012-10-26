@@ -8,7 +8,7 @@
 # Parameters
 COMPILER = g++
 LINKER = g++
-COMPILER_FLAGS = -Wall -g -c -I../vendor/libpd/pure-data/src -I../vendor/libpd/libpd_wrapper
+COMPILER_FLAGS = -Wall -g -c -I/usr/include/pd
 LINKER_FLAGS = -lpd -ljack
 CPP_FILES = $(wildcard *.cpp)
 OBJECTS = $(notdir $(CPP_FILES:.cpp=.o)) # List of .cpp files with .o extension
@@ -23,7 +23,8 @@ main: $(OBJECTS)
 
 # Install 
 install: main
-	cp -f ../bin/xooky_nabox /usr/bin
+	mkdir -p $(DESTDIR)/usr/bin
+	cp -f ../bin/xooky_nabox $(DESTDIR)/usr/bin
 
 # Clean
 .PHONY: clean
