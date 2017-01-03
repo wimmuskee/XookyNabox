@@ -3,6 +3,7 @@
 #include <string>
 #include <stdlib.h>
 #include <getopt.h>
+#include <unistd.h>
 
 #include "z_libpd.h"
 #include <jack/jack.h>
